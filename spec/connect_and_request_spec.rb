@@ -21,7 +21,8 @@ describe APIConnector do
 
     #Would be two step method: grab 1st page, and then a slightly different one for each subsequent page
 
-    expect(apiConnector.dataDump).to eq File.read("./spec/dataDump")
+    dataDumpFile = File.read("./spec/dataDump.rb")
+    expect(apiConnector.dataDump).to eq Kernel.eval(dataDumpFile).flatten
 
   end
 end

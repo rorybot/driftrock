@@ -4,6 +4,7 @@ require 'capybara/rspec'
 require 'simplecov'
 require 'simplecov-console'
 require 'webmock/rspec'
+require 'JSON'
 
 WebMock.disable_net_connect!(allow_localhost: true)
 
@@ -25,6 +26,23 @@ RSpec.configure do |config|
        	  'User-Agent'=>'Ruby'
            }).
          to_return(status: 200, body: File.read("purchasesPage1.json"), headers: {})
+
+
+    stub_request(:get, "http://driftrock-dev-test.herokuapp.com/purchases?page=2&per_page=100").
+        with(  headers: {
+          'Accept'=>'*/*',
+          'Accept-Encoding'=>'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
+          'User-Agent'=>'Ruby'
+          }).
+        to_return(status: 200, body: File.read("purchasesPage2.json"), headers: {})
+
+    stub_request(:get, "http://driftrock-dev-test.herokuapp.com/purchases?page=3&per_page=100").
+         with(  headers: {
+       	  'Accept'=>'*/*',
+       	  'Accept-Encoding'=>'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
+       	  'User-Agent'=>'Ruby'
+           }).
+         to_return(status: 200, body: File.read("empty.json"), headers: {})
   end
 
   config.after(:suite) do
