@@ -3,9 +3,10 @@
 require 'capybara/rspec'
 require 'simplecov'
 require 'simplecov-console'
-# require_relative 'helpers/session_helpers.rb'
+require 'webmock/rspec'
 
-# require File.join(File.dirname(__FILE__), '../app/', 'app.rb')
+WebMock.disable_net_connect!(allow_localhost: true)
+
 
 SimpleCov.formatter = SimpleCov::Formatter::MultiFormatter.new(
   [SimpleCov::Formatter::Console,
@@ -15,17 +16,16 @@ SimpleCov.start
 
 RSpec.configure do |config|
 
-  # 
-  # config.before(:suite) do
   #
-  # end
-  #
-  # config.around(:each) do |example|
-  #
-  # end
-  #
-  # config.after(:each) do
-  # end
+  config.before(:each) do
+    stub_request(:get, "http://driftrock-dev-test.herokuapp.com/purchases?page=1&per_page=100").
+         with(  headers: {
+       	  'Accept'=>'*/*',
+       	  'Accept-Encoding'=>'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
+       	  'User-Agent'=>'Ruby'
+           }).
+         to_return(status: 200, body: File.read("purchasesPage1.json"), headers: {})
+  end
 
   config.after(:suite) do
     puts
