@@ -18,7 +18,6 @@ class APIConnector
     p purchases_collection.flatten.count
 
     if purchase_response(pageNumber, 'parse').empty?
-        File.write('dataDump', purchases_collection)
       return purchases_collection.flatten
     break
     end
