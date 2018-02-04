@@ -15,17 +15,17 @@ SimpleCov.start
 
 RSpec.configure do |config|
 
-
-  config.before(:suite) do
-
-  end
-
-  config.around(:each) do |example|
-
-  end
-
-  config.after(:each) do
-  end
+  # 
+  # config.before(:suite) do
+  #
+  # end
+  #
+  # config.around(:each) do |example|
+  #
+  # end
+  #
+  # config.after(:each) do
+  # end
 
   config.after(:suite) do
     puts
