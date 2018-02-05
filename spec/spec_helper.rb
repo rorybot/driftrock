@@ -5,6 +5,7 @@ require 'simplecov'
 require 'simplecov-console'
 require 'webmock/rspec'
 require 'JSON'
+require 'pry'
 
 WebMock.disable_net_connect!(allow_localhost: true)
 
