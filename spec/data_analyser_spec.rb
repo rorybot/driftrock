@@ -9,11 +9,13 @@ describe DataAnalyser do
   end
 
   it 'produces a frequency table of items purchased, returning most sold' do
-    expect(dataAnalyser.most_x(dataAnalyser.purchase_data, 'item')).to eq 'Gorgeous Granite Computer'
+    all_purchase_data = File.read('./spec/dataDump.rb')
+    expect(dataAnalyser.most_x(Kernel.eval(all_purchase_data).flatten, 'item')).to eq 'Gorgeous Granite Computer'
   end
 
   it 'produces a frequency table of users, returning most loyal ID' do
-    expect(dataAnalyser.most_x(dataAnalyser.purchase_data, 'user_id')).to eq 'RPIZ-UHP7-CR8J-8A08'
+      all_purchase_data = File.read('./spec/dataDump.rb')
+    expect(dataAnalyser.most_x(Kernel.eval(all_purchase_data).flatten, 'user_id')).to eq 'RPIZ-UHP7-CR8J-8A08'
   end
 
   it 'can find an id by email address' do
