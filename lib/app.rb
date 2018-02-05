@@ -9,8 +9,17 @@ class DriftrockInterface
   end
 
   def begin_input
-    if STDIN.gets.chomp.to_s == most_loyal
-      most_loyal
+    store_input = STDIN.gets.chomp.to_s
+    case
+    when store_input == "most_loyal"
+      print most_loyal.to_s
+    when store_input == "most_sold"
+      print most_sold.to_s
+    when store_input.include?("total_spend")
+      address_lookup = store_input.split.last
+      print "£"+total_spend(address_lookup.to_s).to_s
+    when store_input == "quit"
+      exit
     end
   end
 
@@ -51,6 +60,8 @@ class DriftrockInterface
     dataAnalyser.user_data
   end
 end
-#
-# driftrockInterface = DriftrockInterface.new
-# driftrockInterface.begin_input
+
+driftrockInterface = DriftrockInterface.new
+loop do
+driftrockInterface.begin_input
+end
