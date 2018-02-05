@@ -11,7 +11,7 @@ describe DriftrockInterface do
 
   it 'returns the total spend of user with email address' do
     driftrockInterface = DriftrockInterface.new("./spec/dataDump.rb", "./spec/userDataDump.rb")
-    expect(driftrockInterface.total_spend("flatley.murray@bernier.biz")).to eq 212
+    expect(driftrockInterface.total_spend("flatley.murray@bernier.biz")).to eq 274
 
   end
 

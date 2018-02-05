@@ -18,7 +18,11 @@ class DriftrockInterface
   end
 
   def total_spend(email)
-    212
+      id_of_email = dataAnalyser.lookup_by(user_data, "email", email, "id")
+
+      all_purchases = purchase_data.select{|entry| entry["user_id"] == id_of_email}
+
+      all_purchases.inject(0){ |sum,x| sum + x["spend"].to_i}
   end
 
   private

@@ -29,10 +29,10 @@ describe DataAnalyser do
         all_purchase_data_eval = Kernel.eval(all_purchase_data).flatten
         expect(dataAnalyser.sum_all_purchases(all_purchase_data_eval,"RPIZ-UHP7-CR8J-8A08")).to eq 274
       end
-
-      it 'can lookup email and find sum of all purchases' do
-        expect(dataAnalyser.total_spend_by('flatley.murray@bernier.biz')).to eq 274
-
-      end
+      # 
+      # it 'can lookup email and find sum of all purchases' do
+      #   expect(dataAnalyser.total_spend_by('flatley.murray@bernier.biz')).to eq 274
+      #
+      # end
 
 end
