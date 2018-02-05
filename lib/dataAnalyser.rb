@@ -24,9 +24,9 @@ class DataAnalyser
      desired_entry[desired_attribute]
   end
 
-  def all_purchases(data, id)
-    p data
-    data.select{|entry| entry["user_id"] == id}
+  def sum_all_purchases(data, id)
+    all_purchases = data.select{|entry| entry["user_id"] == id}
+    return all_purchases.inject(0){ |sum,x| sum + x["spend"].to_i}
   end
 
 
