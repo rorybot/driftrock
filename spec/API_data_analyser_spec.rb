@@ -23,10 +23,6 @@ describe DataAnalyser do
         expect(dataAnalyser.lookup_by(all_user_data_eval, "email",'flatley.murray@bernier.biz', "id")).to eq "RPIZ-UHP7-CR8J-8A08"
       end
 
-      it 'can find the most loyal user by ID and convert to email' do
-        expect(dataAnalyser.most_loyal).to eq 'flatley.murray@bernier.biz'
-      end
-
 
       it 'can produce a collection of all purchases by id and sum' do
         all_purchase_data = File.read("./spec/dataDump.rb")
