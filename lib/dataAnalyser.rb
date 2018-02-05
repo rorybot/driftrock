@@ -19,8 +19,8 @@ class DataAnalyser
     criteria_array.max_by { |v| freq_table[v] }
   end
 
-  def lookup_by_id(data, search_criteria_type, id, desired_attribute)
-     desired_entry = data.find{|entry| entry[search_criteria_type] == id }
+  def lookup_by_id(data, search_criteria_type, search_criteria, desired_attribute)
+     desired_entry = data.find{|entry| entry[search_criteria_type] == search_criteria }
      desired_entry[desired_attribute]
   end
 
