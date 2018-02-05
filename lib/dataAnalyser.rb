@@ -34,5 +34,10 @@ class DataAnalyser
     sum_all_purchases(purchase_data, id_of_email)
   end
 
+  def most_loyal
+    most_loyal_id = most_x(purchase_data,'user_id')
+    lookup_by(user_data,"id",most_loyal_id,"email")
+  end
+
 
 end
