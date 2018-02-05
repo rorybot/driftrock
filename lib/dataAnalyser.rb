@@ -18,8 +18,10 @@ class DataAnalyser
     p data_for_analysis
     criteria_array = data_for_analysis.map { |entry| entry[criteria_for_analysis] }
     freq_table = criteria_array.each_with_object(Hash.new(0)) { |v, h| h[v] += 1; }
-    p freq_table.sort_by{|k,v| v}
     criteria_array.max_by { |v| freq_table[v] }
+  end
+
+  def lookup_by_id
   end
 
 

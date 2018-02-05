@@ -12,4 +12,8 @@ describe DataAnalyser do
         expect(dataAnalyser.most_x(dataAnalyser.purchase_data, 'user_id')).to eq "RPIZ-UHP7-CR8J-8A08"
       end
 
+      it 'can find an email address by id' do
+        expect(dataAnalyser.lookup_by_id).to eq 'some@email.com'
+      end
+
 end
