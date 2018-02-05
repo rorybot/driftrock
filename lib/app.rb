@@ -1,4 +1,4 @@
-ENV["DRIFTROCK_TEST_ENV"] ||= 'development'
+ENV['DRIFTROCK_TEST_ENV'] ||= 'development'
 
 require_relative 'dataAnalyser'
 
@@ -11,6 +11,7 @@ class DriftrockInterface
   end
 
   def begin_input
+    #Could be reformatted to Hash
     store_input = STDIN.gets.chomp.to_s
     if store_input == 'most_loyal'
       print most_loyal.to_s
@@ -19,8 +20,6 @@ class DriftrockInterface
     elsif store_input.include?('total_spend')
       address_lookup = store_input.split.last
       print '£' + total_spend(address_lookup.to_s).to_s
-    elsif store_input == ""
-      yield
     elsif store_input == 'quit'
       exit
     end
@@ -64,9 +63,9 @@ class DriftrockInterface
   end
 end
 
-driftrockInterface = DriftrockInterface.new
-if ENV["DRIFTROCK_TEST_ENV"] == 'development'
+driftrock_interface = DriftrockInterface.new
+if ENV['DRIFTROCK_TEST_ENV'] == 'development'
   loop do
-  driftrockInterface.begin_input
+    driftrock_interface.begin_input
   end
 end

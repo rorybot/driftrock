@@ -1,5 +1,16 @@
 require('./lib/app')
 
+def simulate_stdin(*inputs, &block)
+   io = StringIO.new
+   inputs.flatten.each { |str| io.puts(str) }
+   io.rewind
+
+   actual_stdin, $stdin = $stdin, io
+   yield
+ ensure
+   $stdin = actual_stdin
+ end
+
 describe DriftrockInterface do
     let(:all_user_data){ File.read("./spec/userDataDump.rb")}
     let(:all_purchase_data){ File.read("./spec/dataDump.rb")}

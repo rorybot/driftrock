@@ -18,10 +18,10 @@ class DataAnalyser
   end
 
   def purchase_data
-    @purchase_data ||= @apiConnector.dataDump('/purchases')
+    @purchase_data ||= @apiConnector.data_dump('/purchases')
   end
 
   def user_data
-    @user_data ||= @apiConnector.dataDump('/users')
+    @user_data ||= @apiConnector.data_dump('/users')
   end
 end

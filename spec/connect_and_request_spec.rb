@@ -13,13 +13,8 @@ describe APIConnector do
   end
 
   it 'scans each page, storing complete, parsed, flattened collection' do
-    # Is this best? Would we have to download an entire database to iterate over it? Could we examine JSON actively?
-
-    # Maybe if frequency table, items are added to it if not already there, or else they are increased by one
-
-    # Would be two step method: grab 1st page, and then a slightly different one for each subsequent page
-
+    #Any way to do without downloading all data first?
     dataDumpFile = File.read('./spec/dataDump.rb')
-    expect(apiConnector.dataDump('/purchases')).to eq Kernel.eval(dataDumpFile).flatten
+    expect(apiConnector.data_dump('/purchases')).to eq Kernel.eval(dataDumpFile).flatten
   end
 end
