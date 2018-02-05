@@ -13,10 +13,10 @@ class DataAnalyser
     @user_data ||= @apiConnector.dataDump('/users')
   end
 
-  def most_sold(data_for_analysis)
-    item_array = data_for_analysis.map { |purchase| purchase['item'] }
-    freq_table = item_array.each_with_object(Hash.new(0)) { |v, h| h[v] += 1; }
-    item_array.max_by { |v| freq_table[v] }
+  def most_x(data_for_analysis, criteria_for_analysis)
+    criteria_array = data_for_analysis.map { |entry| entry[criteria_for_analysis] }
+    freq_table = criteria_array.each_with_object(Hash.new(0)) { |v, h| h[v] += 1; }
+    criteria_array.max_by { |v| freq_table[v] }
   end
 
 
