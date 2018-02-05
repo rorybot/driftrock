@@ -43,6 +43,31 @@ RSpec.configure do |config|
        	  'User-Agent'=>'Ruby'
            }).
          to_return(status: 200, body: File.read("empty.json"), headers: {})
+
+     stub_request(:get, "http://driftrock-dev-test.herokuapp.com/users?page=1&per_page=100").
+       with(  headers: {
+     	  'Accept'=>'*/*',
+     	  'Accept-Encoding'=>'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
+     	  'User-Agent'=>'Ruby'
+         }).
+       to_return(status: 200, body: File.read("usersPage1.json"), headers: {})
+
+     stub_request(:get, "http://driftrock-dev-test.herokuapp.com/users?page=2&per_page=100").
+       with(  headers: {
+     	  'Accept'=>'*/*',
+     	  'Accept-Encoding'=>'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
+     	  'User-Agent'=>'Ruby'
+         }).
+       to_return(status: 200, body: File.read("usersPage2.json"), headers: {})
+
+       stub_request(:get, "http://driftrock-dev-test.herokuapp.com/users?page=3&per_page=100").
+         with(  headers: {
+           'Accept'=>'*/*',
+           'Accept-Encoding'=>'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
+           'User-Agent'=>'Ruby'
+           }).
+         to_return(status: 200, body: File.read("empty.json"), headers: {})
+
   end
 
   config.after(:suite) do

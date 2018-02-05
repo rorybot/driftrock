@@ -11,11 +11,14 @@ class DataAnalyser
 
   def user_data
     @user_data ||= @apiConnector.dataDump('/users')
+    # File.write('userDataDump', @user_data)
   end
 
   def most_x(data_for_analysis, criteria_for_analysis)
+    p data_for_analysis
     criteria_array = data_for_analysis.map { |entry| entry[criteria_for_analysis] }
     freq_table = criteria_array.each_with_object(Hash.new(0)) { |v, h| h[v] += 1; }
+    p freq_table.sort_by{|k,v| v}
     criteria_array.max_by { |v| freq_table[v] }
   end
 
