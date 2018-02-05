@@ -13,7 +13,9 @@ describe DataAnalyser do
       end
 
       it 'can find an email address by id' do
-        expect(dataAnalyser.lookup_by_id).to eq 'some@email.com'
+        all_user_data = File.read("./spec/userDataDump.rb")
+        all_user_data_eval = Kernel.eval(all_user_data).flatten
+        expect(dataAnalyser.lookup_by_id(all_user_data_eval, "RPIZ-UHP7-CR8J-8A08", "email")).to eq 'flatley.murray@bernier.biz'
       end
 
 end
