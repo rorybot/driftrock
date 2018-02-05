@@ -13,6 +13,12 @@ class DriftrockInterface
     dataAnalyser.lookup_by(user_data,"id",most_loyal_id,"email")
   end
 
+  def most_sold
+    dataAnalyser.most_x(purchase_data, 'item')
+  end
+
+  private
+
   def purchase_data
     foo = File.read(test_purchase_data)
     bar = Kernel.eval(foo).flatten
