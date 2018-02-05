@@ -13,12 +13,6 @@ class DataAnalyser
     @user_data ||= @apiConnector.dataDump('/users')
   end
 
-  def most_x(data_for_analysis, criteria_for_analysis)
-    criteria_array = data_for_analysis.map { |entry| entry[criteria_for_analysis] }
-    freq_table = criteria_array.each_with_object(Hash.new(0)) { |v, h| h[v] += 1; }
-    criteria_array.max_by { |v| freq_table[v] }
-  end
-
   def lookup_by(data, search_criteria_type, search_criteria, desired_attribute)
      desired_entry = data.find{|entry| entry[search_criteria_type] == search_criteria }
      desired_entry[desired_attribute]
@@ -34,9 +28,10 @@ class DataAnalyser
     sum_all_purchases(purchase_data, id_of_email)
   end
 
-  def most_loyal
-    most_loyal_id = most_x(purchase_data,'user_id')
-    lookup_by(user_data,"id",most_loyal_id,"email")
+  def most_x(data_for_analysis, criteria_for_analysis)
+    criteria_array = data_for_analysis.map { |entry| entry[criteria_for_analysis] }
+    freq_table = criteria_array.each_with_object(Hash.new(0)) { |v, h| h[v] += 1; }
+    criteria_array.max_by { |v| freq_table[v] }
   end
 
 
