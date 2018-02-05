@@ -1,3 +1,6 @@
+require 'net/http'
+require 'JSON'
+
 class APIConnector
   def purchase_response(page, parse = false, route = '/purchases')
     uri = 'driftrock-dev-test.herokuapp.com'
