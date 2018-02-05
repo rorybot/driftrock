@@ -6,7 +6,6 @@ class DataAnalyser
   end
 
   def lookup_by(data, search_criteria_type, search_criteria, desired_attribute)
-    
     desired_entry = data.find { |entry| entry[search_criteria_type] == search_criteria }
     # binding.pry
     desired_entry[desired_attribute]

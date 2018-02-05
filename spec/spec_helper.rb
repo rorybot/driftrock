@@ -1,4 +1,4 @@
-
+ENV["DRIFTROCK_TEST_ENV"] ||= 'test' 
 # rubocop:disable all
 require 'capybara/rspec'
 require 'simplecov'
