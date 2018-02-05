@@ -11,9 +11,9 @@ class DriftrockInterface
     @api_connector = APIConnector.new
   end
 
-  def begin_input
+  def begin_input(stdin = STDIN)
     #Could be reformatted to Hash
-    store_input = STDIN.gets.chomp.to_s
+    store_input = stdin.gets.chomp.to_s
     if store_input == 'most_loyal'
       print most_loyal.to_s
     elsif store_input == 'most_sold'
