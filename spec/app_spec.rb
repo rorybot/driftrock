@@ -30,4 +30,5 @@ describe DriftrockInterface do
     driftrockInterface = DriftrockInterface.new("./spec/dataDump.rb", "./spec/userDataDump.rb")
     expect(driftrockInterface.most_loyal).to eq "flatley.murray@bernier.biz"
   end
+  
 end
