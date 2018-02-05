@@ -19,7 +19,7 @@ class DataAnalyser
     criteria_array.max_by { |v| freq_table[v] }
   end
 
-  def lookup_by_id(data, search_criteria_type, search_criteria, desired_attribute)
+  def lookup_by(data, search_criteria_type, search_criteria, desired_attribute)
      desired_entry = data.find{|entry| entry[search_criteria_type] == search_criteria }
      desired_entry[desired_attribute]
   end
@@ -27,6 +27,11 @@ class DataAnalyser
   def sum_all_purchases(data, id)
     all_purchases = data.select{|entry| entry["user_id"] == id}
     return all_purchases.inject(0){ |sum,x| sum + x["spend"].to_i}
+  end
+
+  def total_spend_by(email)
+    id_of_email = lookup_by(user_data, "email", email, "id")
+    sum_all_purchases(purchase_data, id_of_email)
   end
 
 

@@ -13,7 +13,7 @@ describe DataAnalyser do
       it 'can find an id by email address' do
         all_user_data = File.read("./spec/userDataDump.rb")
         all_user_data_eval = Kernel.eval(all_user_data).flatten
-        expect(dataAnalyser.lookup_by_id(all_user_data_eval, "email",'flatley.murray@bernier.biz', "id")).to eq "RPIZ-UHP7-CR8J-8A08"
+        expect(dataAnalyser.lookup_by(all_user_data_eval, "email",'flatley.murray@bernier.biz', "id")).to eq "RPIZ-UHP7-CR8J-8A08"
       end
 
       it 'can produce a collection of all purchases by id and sum' do
@@ -22,7 +22,13 @@ describe DataAnalyser do
         expect(dataAnalyser.sum_all_purchases(all_purchase_data_eval,"RPIZ-UHP7-CR8J-8A08")).to eq 274
       end
 
-      it 'can lookup email address by email and find sum of all purchases' do
+      it 'can lookup email and find sum of all purchases' do
+
+        all_user_data = File.read("./spec/userDataDump.rb")
+        all_purchase_data = File.read("./spec/dataDump.rb")
+        allow(dataAnalyser).to receive(:user_data).and_return( Kernel.eval(all_user_data).flatten)
+        allow(dataAnalyser).to receive(:purchase_data).and_return(Kernel.eval(all_purchase_data).flatten)
+        
         expect(dataAnalyser.total_spend_by('flatley.murray@bernier.biz')).to eq 274
 
       end
