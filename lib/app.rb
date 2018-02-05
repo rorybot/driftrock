@@ -3,11 +3,12 @@ ENV['DRIFTROCK_TEST_ENV'] ||= 'development'
 require_relative 'dataAnalyser'
 
 class DriftrockInterface
-  attr_reader :data_analyser, :test_purchase_data, :test_user_data
+  attr_reader :data_analyser, :test_purchase_data, :test_user_data, :api_connector
   def initialize(test_purchase_data = nil, test_user_data = nil)
     @data_analyser = DataAnalyser.new
     @test_purchase_data = test_purchase_data
     @test_user_data = test_user_data
+    @api_connector = APIConnector.new
   end
 
   def begin_input
@@ -50,7 +51,7 @@ class DriftrockInterface
       bar = Kernel.eval(foo).flatten
       return bar
     end
-    data_analyser.purchase_data
+    api_connector.data_dump('/purchases')
   end
 
   def user_data
@@ -59,7 +60,7 @@ class DriftrockInterface
       bar = Kernel.eval(foo).flatten
       return bar
     end
-    data_analyser.user_data
+    api_connector.data_dump('/users')
   end
 end
 
