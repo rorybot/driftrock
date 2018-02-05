@@ -11,7 +11,6 @@ class DataAnalyser
 
   def user_data
     @user_data ||= @apiConnector.dataDump('/users')
-    # File.write('userDataDump', @user_data)
   end
 
   def most_x(data_for_analysis, criteria_for_analysis)
@@ -20,22 +19,14 @@ class DataAnalyser
     criteria_array.max_by { |v| freq_table[v] }
   end
 
-  def lookup_by_id(data, id, desired_attribute)
-     # id_array = data.select { |entry|
-     #  p entry[id]}
-
-     desired_entry = data.find{|entry| entry["id"] == id }
+  def lookup_by_id(data, search_criteria_type, id, desired_attribute)
+     desired_entry = data.find{|entry| entry[search_criteria_type] == id }
      desired_entry[desired_attribute]
+  end
 
-    #   id_array.selec
-    #
-    # id_array.select { |entry|
-    # result = entry["id"] == id
-    # p result
-    #   return result[desired_attribute]
-    # }
-    #
-    # p bar
+  def all_purchases(data, id)
+    p data
+    data.select{|entry| entry["user_id"] == id}
   end
 
 
