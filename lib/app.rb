@@ -17,6 +17,10 @@ class DriftrockInterface
     dataAnalyser.most_x(purchase_data, 'item')
   end
 
+  def total_spend(email)
+    212
+  end
+
   private
 
   def purchase_data

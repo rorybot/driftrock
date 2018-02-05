@@ -9,9 +9,11 @@ describe DriftrockInterface do
     expect(driftrockInterface.most_sold).to eq "Gorgeous Granite Computer"
   end
 
-  # it 'returns the total spend' do
-  #
-  # end
+  it 'returns the total spend of user with email address' do
+    driftrockInterface = DriftrockInterface.new("./spec/dataDump.rb", "./spec/userDataDump.rb")
+    expect(driftrockInterface.total_spend("flatley.murray@bernier.biz")).to eq 212
+
+  end
 
   it 'returns the most loyal email address' do
     driftrockInterface = DriftrockInterface.new("./spec/dataDump.rb", "./spec/userDataDump.rb")
