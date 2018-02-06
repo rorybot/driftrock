@@ -16,14 +16,4 @@ class DataAnalyser
     freq_table = criteria_array.each_with_object(Hash.new(0)) { |v, h| h[v] += 1; }
     criteria_array.max_by { |v| freq_table[v] }
   end
-
-  private
-
-  def purchase_data
-    @purchase_data ||= @apiConnector.data_dump('/purchases')
-  end
-
-  def user_data
-    @user_data ||= @apiConnector.data_dump('/users')
-  end
 end
